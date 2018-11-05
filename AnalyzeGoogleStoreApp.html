@@ -11775,10 +11775,10 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Free-or-Paid,-Rates-of-Google-Play-Store-Users">Free or Paid, Rates of Google Play Store Users<a class="anchor-link" href="#Free-or-Paid,-Rates-of-Google-Play-Store-Users">&#182;</a></h1><h2 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h2><p>Users download apps for various usage purposes. Given that paid service is usually better at offering pleasant experience, and that free apps are more accesible to everyone, what are the user opinions towards free and paid apps?</p>
+<h1 id="Free-or-Paid,-Rates-of-Google-Play-Store-Users">Free or Paid, Rates of Google Play Store Users<a class="anchor-link" href="#Free-or-Paid,-Rates-of-Google-Play-Store-Users">&#182;</a></h1><h2 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h2><p>Users download apps for various usage purposes. Given that paid service is usually better at offering pleasant experience, and that free apps are more accesible to everyone, what are the user opinions towards these apps?</p>
 <p>More specifically, the following questions are of interest:</p>
 <ul>
-<li>How do the ratings differ between paid and free apps in general?</li>
+<li>How do the app ratings differ between paid and free apps in general?</li>
 <li>How are the differences distributed across different app categories?</li>
 <li>Are there any categories where the differences are statistically significant?</li>
 </ul>
@@ -12007,7 +12007,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check and clen type values, defer nan value processing to the next cell</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check and clean type values, defer nan value processing to the next cell</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_no_dup</span><span class="o">.</span><span class="n">Type</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dropping alien Type value &#39;0&#39;, </span><span class="si">{}</span><span class="s2"> record(s) removed&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">df_no_dup</span><span class="o">.</span><span class="n">Type</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">)))</span>
 <span class="n">df_no_dup</span> <span class="o">=</span> <span class="n">df_no_dup</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df_no_dup</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df_no_dup</span><span class="o">.</span><span class="n">Type</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -12048,7 +12048,7 @@ Dropping alien Type value &#39;0&#39;, 1 record(s) removed
 <span class="n">df_no_dup</span> <span class="o">=</span> <span class="n">df_no_dup</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Column &#39;Type&#39; with NaN values are dropped, </span><span class="si">{}</span><span class="s2"> records left.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_no_dup</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="c1"># prepare for ranking and installs</span>
+<span class="c1"># prepare rating dataframe</span>
 <span class="n">df_rating</span> <span class="o">=</span> <span class="n">df_no_dup</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rating&#39;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cleaned dataframe for &#39;Rating&#39; has </span><span class="si">{}</span><span class="s2"> records.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_rating</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
@@ -12098,7 +12098,7 @@ Cleaned dataframe for &#39;Rating&#39; has 8196 records.
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># we are interested in the columns Category, Rating, Type</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># we are interested in the columns Category, Rating and Type</span>
 <span class="c1"># Drop irrelevant columns for Rating dataframe.</span>
 <span class="n">df_rating</span> <span class="o">=</span> <span class="n">df_rating</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Rating&#39;</span><span class="p">,</span> <span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Category&#39;</span><span class="p">]]</span>
 </pre></div>
@@ -12147,7 +12147,7 @@ Cleaned dataframe for &#39;Rating&#39; has 8196 records.
 
 <span class="k">def</span> <span class="nf">drop_categories</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Drop categories with any app type fewer than 10</span>
+<span class="sd">    Drop categories with any app type with instances fewer than 10</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">vc_rating</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Category</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
     <span class="n">cats_to_drop</span> <span class="o">=</span> <span class="p">[]</span>
@@ -12343,8 +12343,8 @@ Cleaned dataframe for &#39;Rating&#39; has 8196 records.
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Exclude categories with fewer than 10 apps for any of Free or Paid apps</span>
-<span class="c1"># Otherwise the categories contain too few data to generalize result</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Exclude categories with fewer than 10 apps for any Free or Paid type</span>
+<span class="c1"># Otherwise the categories would contain too few data to generalize the result</span>
 <span class="n">df_rating</span> <span class="o">=</span> <span class="n">drop_categories</span><span class="p">(</span><span class="n">df_rating</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cleaned Rating dataframe has </span><span class="si">{}</span><span class="s2"> datapoints&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_rating</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
@@ -12465,7 +12465,7 @@ Cleaned Rating dataframe has 5753 datapoints
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Q-1.-How-do-the-installation-and-rating-statistics-differ-in-general?">Q 1. How do the installation and rating statistics differ in general?<a class="anchor-link" href="#Q-1.-How-do-the-installation-and-rating-statistics-differ-in-general?">&#182;</a></h3>
+<h3 id="Q-1.-How-does-the-ratings-differ-in-general?">Q 1. How does the ratings differ in general?<a class="anchor-link" href="#Q-1.-How-does-the-ratings-differ-in-general?">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -12476,7 +12476,7 @@ Cleaned Rating dataframe has 5753 datapoints
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_target_by_group</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target_col</span><span class="p">,</span> <span class="n">group_col</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plot the mean of a target column (Numeric) groupped by the group_col (categorical)</span>
+<span class="sd">    Plot the mean of a target column (Numeric) groupped by the group column (categorical)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">order</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">group_col</span><span class="p">])))</span>
     <span class="n">stats</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_col</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="n">target_col</span><span class="p">]</span>
@@ -12559,7 +12559,7 @@ Mean rating: 4.173196593081873
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h4><p>In general, Free apps, with an average rating of 4.16, are lower rated than Paid apps which has an average rate 4.27. Note that the average rating score for all apps is 4.17, so Free apps are rated below average, while Paid apps are rated reletively higher than the average score.</p>
+<h4 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h4><p>In general, Free apps, with an average rating of 4.16, are lower rated than Paid apps with an average rating of 4.27. Note that the average rating for all apps is 4.17, so Free apps are rated below average, while Paid apps are rated reletively higher than the average score.</p>
 
 </div>
 </div>
@@ -12692,7 +12692,7 @@ Name: Rating, dtype: float64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h4><p>Although paid apps are in general more highly rated than free apps, and so are in most app categories, there are also some app categories where free apps are likely to be favored more than the paid apps. For instance, apps in COMMUNICATION, FINANCE and PHOTOGRAPHY are three such categories. In FINANCE category, the free apps on average are rated almost 0.3 higher than the paid apps, the largest differences made among all the categories.</p>
+<h4 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h4><p>Although paid apps are in general more highly-rated than free apps, and so are in most app categories, there are still some app categories where free apps are likely to be favored more than the paid apps. For instance, COMMUNICATION, FINANCE and PHOTOGRAPHY are three such categories. In FINANCE category, the free apps on average are rated almost 0.3 higher than the paid apps, which is also the largest difference between app types across all the categories.</p>
 
 </div>
 </div>
@@ -12721,7 +12721,7 @@ Name: Rating, dtype: float64</pre>
 
 <span class="k">def</span> <span class="nf">cat_utest</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute utest for each app category</span>
+<span class="sd">    Iteratively compute utest for each app category</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cats</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Category</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
@@ -12734,7 +12734,7 @@ Name: Rating, dtype: float64</pre>
 
 <span class="n">uval</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">compute_utest</span><span class="p">(</span><span class="n">df_rating</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;General ttest result: pval </span><span class="si">{}</span><span class="s2">, u </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pval</span><span class="p">,</span> <span class="n">uval</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;General utest result: pval </span><span class="si">{}</span><span class="s2">, u </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pval</span><span class="p">,</span> <span class="n">uval</span><span class="p">))</span>
 <span class="n">df_utest</span> <span class="o">=</span> <span class="n">cat_utest</span><span class="p">(</span><span class="n">df_rating</span><span class="p">)</span>   
 <span class="n">df_utest</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_utest</span><span class="o">.</span><span class="n">pval</span> <span class="o">&lt;</span> <span class="o">.</span><span class="mi">05</span><span class="p">]</span> <span class="c1"># significant categories</span>
 </pre></div>
@@ -12828,7 +12828,7 @@ Name: Rating, dtype: float64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h4><p>As rating is not normal distributed, Mann-Whitney's U test was applied to test the significance of rating differences, as this test if free from a normal distribution assumption. At the 0.05 significance level, results of the u tests on different categories demonstrate that the free and paid apps in the following categories have significant rating differences: personalization, tools, family and games. Paid apps are on average higher rated than free apps in these categories.</p>
+<h4 id="Interpretation">Interpretation<a class="anchor-link" href="#Interpretation">&#182;</a></h4><p>As rating is not normally-distributed, Mann-Whitney's U test was applied to test the significance of rating differences, since this test is free from a normal assumption. At the 0.05 significance level, results of the u tests on different categories demonstrate that the free and paid apps in the following categories have significant rating differences: personalization, tools, family and games. Paid apps are on average higher rated than free apps in these categories.</p>
 
 </div>
 </div>
@@ -12840,13 +12840,13 @@ Name: Rating, dtype: float64</pre>
 <h3 id="Concluding-Remarks">Concluding Remarks<a class="anchor-link" href="#Concluding-Remarks">&#182;</a></h3><p>Data analysis was conducted on the Kaggle Google Play Store dataset, the answers to the three questions were explored:</p>
 <ul>
 <li>How do the ratings differ between paid and free apps in general?
-In general, Paid apps are better-rated than free apps, which supports the argument that service quility of the paid apps tend to be better.</li>
+In general, Paid apps are better-rated than free apps, which appears to support the argument that service quility of the paid apps is better.</li>
 <li>How are the differences distributed across different app categories?
-In most categories, Paid apps achieve higher ratings than free apps, however, in a few categories such as COMMUNICATION, FINANCE and PHOTOGRAPHY, the average ratings of free apps are higher than those of paid apps. Does it imply that some popular apps in these categories are free, like facebook and whatsapp in the COMMUNICATION category?</li>
+In most categories, Paid apps achieve higher ratings than free apps, however, in a few categories such as COMMUNICATION, FINANCE and PHOTOGRAPHY, the average ratings of free apps are higher than those of paid apps. Is this because many popular apps in these categories are free, like facebook and whatsapp in the COMMUNICATION category?</li>
 <li>Are there any categories where the differences are statistically significant?
 There are four categories (PERSONALIZATION, TOOLS, FAMILY and GAME) where paid apps are rated significantly higher than free apps.</li>
 </ul>
-<p>This is only a very initial exploration of the Google Play Store dataset. There are many other useful information including installation counts and app review texts, which might entail many more interesting facts.</p>
+<p>This is only a very superficial exploration of the Google Play Store dataset. There are many other useful information including installation counts and app review texts, which might entail many more interesting facts and await further exploration.</p>
 
 </div>
 </div>
