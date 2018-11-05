@@ -1,5 +1,9 @@
 # Data Analysis for Google Play Store
 
+![Goole Play Store](https://raw.githubusercontent.com/qiaochen/DataAnalysis4GooglePlayStore/master/appimage.jpg) 
+
+Image Source:[link](https://icdn2.digitaltrends.com/image/play-store-720x720.jpg?ver=1.jpg)
+
 ## Motivation
 Users download apps for various usage purposes. Given that paid service is usually better at offering pleasant experience, and that free apps are more accesible to everyone, what are the user opinions towards these apps?
 
