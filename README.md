@@ -4,6 +4,8 @@
 
 Image Source:[link](https://icdn2.digitaltrends.com/image/play-store-720x720.jpg?ver=1.jpg)
 
+Please also consider reading this [blog article](https://medium.com/@cqiao/free-or-paid-which-app-would-you-vote-an-analysis-of-google-play-store-27285b496cc0) for a non-technical overview of this project.
+
 ## Motivation
 Users download apps for various usage purposes. Given that paid service is usually better at offering pleasant experience, and that free apps are more accesible to everyone, what are the user opinions towards these apps?
 
